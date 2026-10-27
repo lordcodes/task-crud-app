@@ -11,6 +11,7 @@
   --danger-hover: #b91c1c;
   --todo: #64748b;
   --in-progress: #d97706;
+  --in-review: #d2042d;
   --done: #16a34a;
   --shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
   --radius: 10px;
@@ -310,6 +311,11 @@ textarea {
 .status-in-progress {
   background: #fef3c7;
   color: var(--in-progress);
+}
+
+.status-in-review {
+  background: #f88379;
+  color: var(--in-review);
 }
 
 .status-done {

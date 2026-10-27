@@ -4,6 +4,7 @@ import type { CreateTaskInput, Task, TaskStatus } from "../types/task";
 const STATUS_OPTIONS: { value: TaskStatus; label: string }[] = [
   { value: "todo", label: "Todo" },
   { value: "in-progress", label: "In Progress" },
+  { value: "in-review", label: "In Review" },
   { value: "done", label: "Done" },
 ];
 

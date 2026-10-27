@@ -47,6 +47,7 @@ export async function updateTask(id: string, input: UpdateTaskInput): Promise<Ta
       input.description !== undefined
         ? input.description.trim() || undefined
         : existing.description,
+    status: input.status !== undefined ? input.status || undefined : existing.status,
     updatedAt: new Date().toISOString(),
   };
 

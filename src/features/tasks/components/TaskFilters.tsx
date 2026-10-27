@@ -4,6 +4,7 @@ const FILTERS: { value: TaskFilter; label: string }[] = [
   { value: "all", label: "All" },
   { value: "todo", label: "Todo" },
   { value: "in-progress", label: "In Progress" },
+  { value: "in-review", label: "In Review" },
   { value: "done", label: "Done" },
 ];
 

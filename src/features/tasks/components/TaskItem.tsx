@@ -3,6 +3,7 @@ import type { Task } from "../types/task";
 const STATUS_LABELS: Record<Task["status"], string> = {
   todo: "Todo",
   "in-progress": "In Progress",
+  "in-review": "In Review",
   done: "Done",
 };
 
