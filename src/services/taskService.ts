@@ -20,6 +20,7 @@ export async function createTask(input: CreateTaskInput): Promise<Task> {
     title: input.title.trim(),
     description: input.description?.trim() || undefined,
     status: input.status,
+    priority: input.priority ?? "default",
     createdAt: now,
     updatedAt: now,
   };
@@ -48,6 +49,7 @@ export async function updateTask(id: string, input: UpdateTaskInput): Promise<Ta
         ? input.description.trim() || undefined
         : existing.description,
     status: input.status !== undefined ? input.status || undefined : existing.status,
+    priority: input.priority !== undefined ? input.priority || undefined : existing.priority,
     updatedAt: new Date().toISOString(),
   };
 

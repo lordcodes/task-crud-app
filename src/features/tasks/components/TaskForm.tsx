@@ -8,6 +8,13 @@ const STATUS_OPTIONS: { value: TaskStatus; label: string }[] = [
   { value: "done", label: "Done" },
 ];
 
+const PRIORITY_OPTIONS: { value: TaskPriority; label: string }[] = [
+  { value: "low", label: "Low" },
+  { value: "default", label: "Default" },
+  { value: "high", label: "High" },
+  { value: "highest", label: "Highest" },
+];
+
 type TaskFormProps = {
   initialTask?: Task | null;
   onSubmit: (input: CreateTaskInput) => Promise<void>;
@@ -18,6 +25,7 @@ export function TaskForm({ initialTask, onSubmit, onCancel }: TaskFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState<TaskStatus>("todo");
+  const [priority, setPriority] = useState<TaskPriority>("default");
   const [submitting, setSubmitting] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
 
@@ -28,10 +36,12 @@ export function TaskForm({ initialTask, onSubmit, onCancel }: TaskFormProps) {
       setTitle(initialTask.title);
       setDescription(initialTask.description ?? "");
       setStatus(initialTask.status);
+      setPriority(initialTask.priority);
     } else {
       setTitle("");
       setDescription("");
       setStatus("todo");
+      setPriority("default");
     }
     setValidationError(null);
   }, [initialTask]);
@@ -53,11 +63,13 @@ export function TaskForm({ initialTask, onSubmit, onCancel }: TaskFormProps) {
         title: trimmedTitle,
         description: description.trim() || undefined,
         status,
+        priority,
       });
       if (!isEditing) {
         setTitle("");
         setDescription("");
         setStatus("todo");
+        setPriority("default");
       }
     } finally {
       setSubmitting(false);
@@ -100,6 +112,22 @@ export function TaskForm({ initialTask, onSubmit, onCancel }: TaskFormProps) {
             disabled={submitting}
           >
             {STATUS_OPTIONS.map(({ value, label }) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="priority">Priority</label>
+          <select
+            id="priority"
+            value={priority}
+            onChange={(event) => setPriority(event.target.value as TaskPriority)}
+            disabled={submitting}
+          >
+            {PRIORITY_OPTIONS.map(({ value, label }) => (
               <option key={value} value={value}>
                 {label}
               </option>
